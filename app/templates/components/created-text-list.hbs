@@ -1,0 +1,26 @@
+{{#if reversedCreatedTextList}}
+  <table class="table table-striped table-condensed margin-bottom padding-bottom">
+    <thead>
+      <tr>
+        <th>l10n Key</th>
+        <th>Text</th>
+        <th>PlaceHolder</th>
+        <th>Required</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each reversedCreatedTextList as |data|}}
+        <tr>
+          <td><strong>{{data.base}}{{data.key}}</strong></td>
+          <td>{{data.text}}</td>
+          <td class="text-sm-center">{{data.hasPlaceholder}}</td>
+          <td class="text-sm-center">{{data.hasRequired}}</td>
+          <td class="text-sm-center">
+            <button type="button" class="btn btn-danger" {{action 'removeClicked' data}}>Remove</button>
+          </td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
+{{/if}}

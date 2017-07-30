@@ -1,0 +1,27 @@
+<h2 class="margin-bottom">Text Scripts</h2>
+
+{{#if errorList}}
+  <div class="alert alert-danger">
+    <div>
+      <span><strong>Aw Snap!</strong></span>
+      <button type="button" class="close" {{action 'clearError'}}>
+        <span aria-hidden="true">&times;</span>
+        <span class="sr-only">Close</span>
+      </button>
+    </div>
+    <ul>
+      {{#each errorList as |error|}}
+        <li>{{error}}</li>
+      {{/each}}
+    </ul>
+  </div>
+{{/if}}
+
+<ul class="nav nav-tabs margin-bottom" role="tablist">
+  <li class="nav-item">{{#link-to "create" class="nav-link" href="#"}}Create l10n Key{{/link-to}}</li>
+  <li class="nav-item">{{#link-to "import" class="nav-link" href="#"}}Import/Compare l10n Key(s){{/link-to}}</li>
+  <li class="nav-item">{{#link-to "company-attribute" class="nav-link" href="#"}}Company Attribute{{/link-to}}</li>
+  <li class="nav-item"><a class="nav-link" href="https://github.com/themmer/text-scripts/issues/new" target="_blank">Report Bug / Feature Request</a></li>
+</ul>
+
+{{outlet}}

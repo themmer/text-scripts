@@ -1,0 +1,7 @@
+{{#if sqlList}}
+  <h4 class="margin-top padding-top">{{heading}}</h4>
+
+  <textarea id="sqlCode" class="pre-textarea" readonly="readonly">{{#each sqlList as |data|}}{{data}}
+{{/each}}
+  </textarea>
+{{/if}}

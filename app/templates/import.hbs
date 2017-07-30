@@ -1,0 +1,42 @@
+<form {{action "noop" on="submit"}}>
+
+  <div class="form-group">
+    <label>Ticket
+      #*</label> {{input class="form-control" name="ticket" type="text" placeholder="Ticket Number ( E.G. JIRA-1234 )" value=ticketNumber autofocus="autofocus"}}
+  </div>
+
+  <div class="form-group">
+    <label>Starting SQL Index (Offset for adding on existing sql)</label> {{input class="form-control" name="insertQueryCount" type="number" value=insertQueryCount}}
+  </div>
+
+  <div class="form-check">
+    <label class="form-check-label">
+      {{input class="form-check-input" name="isClientOverrideAllowed" type="checkbox" checked=isClientOverrideAllowed}}
+      Force override of existing client values?
+    </label>
+  </div>
+
+  <div class="form-group">
+    {{client-server-select bundleType=bundleType}}
+  </div>
+
+  <div class="form-group">
+    <h4>New CSV Text ("key","translation","")</h4>
+    {{import-csv text=newText placeholder="key,value,"}}
+  </div>
+
+  <div class="form-group">
+    <h4>Old CSV Text (optional)</h4>
+    {{import-csv text=oldText}}
+  </div>
+
+  <div class="form-group">
+    {{sql-display sqlList=sqlList}}
+  </div>
+
+
+  <div class="form-group">
+    {{sql-display sqlList=allList heading='Audit Display'}}
+  </div>
+
+</form>

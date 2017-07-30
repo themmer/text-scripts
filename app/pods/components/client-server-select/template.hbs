@@ -1,0 +1,6 @@
+<label>Client or Server Effort? (Changes SQL)</label>
+<select class="form-control" onchange={{action "selectBundleType" value="target.value"}}>
+  {{#each bundleTypes as |bundleTypeChoice|}}
+    <option value={{bundleTypeChoice}} selected={{eq bundleType bundleTypeChoice}}>{{bundleTypeChoice}}</option>
+  {{/each}}
+</select>

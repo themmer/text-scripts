@@ -1,0 +1,147 @@
+<form {{action "noop" on="submit"}}>
+
+  <div class="form-group">
+    <label>Ticket
+      #</label> {{input class="form-control" name="ticketNumber" type="text" placeholder="Ticket Number ( E.G. JIRA-1234 )" value=ticketNumber autofocus="autofocus"}}
+  </div>
+
+  <div class="form-group">
+    <label>ID
+      (Key)</label> {{input class="form-control" name="id" type="text" placeholder="E.G. feature.mobile.enabled" value=id}}
+  </div>
+
+  <div class="form-group">
+    <label class="form-check-label">
+      {{input class="form-check-input" name="hasParent" type="checkbox" checked=hasParent click=(action "selectHasParent" value="target.checked") }}
+      Has parent company attribute?
+    </label>
+  </div>
+
+  {{#if hasParent}}
+    <div class="jumbotron jumbotron-fluid">
+      <div class="container">
+        <div class="form-group">
+          <label>Parent
+            ID</label> {{input class="form-control" name="parent" type="text" placeholder="ID of parent if exists - used for hiearchy (indents)" value=parent}}
+        </div>
+
+        <div class="form-group">
+          <label>Parent Value Required for
+            Visibility</label> {{input class="form-control" name="parentValueForVisibility" type="text" placeholder="Value on Parent to show child (this) in Control" value=parentValueForVisibility}}
+        </div>
+      </div>
+    </div>
+  {{/if}}
+
+  <div class="form-group">
+    <label>Group Name</label>
+    <select class="form-control" onchange= {{action "selectGroupName" value="target.value"}}>
+      {{#each groupNames as |groupNameChoice|}}
+        <option
+          value={{groupNameChoice}} selected={{eq groupName groupNameChoice}}>{{groupNameChoice}}</option>
+      {{/each}}
+    </select> {{input class="form-control" name="groupName" type="text" value=groupName placeholder="Use Dropdown for existing values"}}
+  </div>
+
+  <div class="form-group">
+    <label>Section Name</label>
+    <select class="form-control" onchange= {{action "selectSectionName" value="target.value"}}>
+      {{#each sectionNames as |sectionNameChoice|}}
+        <option
+          value={{sectionNameChoice}} selected={{eq sectionName sectionNameChoice}}>{{sectionNameChoice}}</option>
+      {{/each}}
+    </select> {{input class="form-control" name="sectionName" type="text" value=sectionName placeholder="Use Dropdown for existing values"}}
+  </div>
+
+
+  <div class="form-group">
+    <label>Title (Admin Label)</label> {{input class="form-control" name="title" type="text" value=title placeholder="E.G. Dashboard"}}
+  </div>
+
+  <div class="form-group">
+    <label>Description</label> {{input class="form-control" name="description" type="text" value=description}}
+  </div>
+
+  <div class="form-group">
+    <label>Value Type</label>
+    <select class="form-control" onchange= {{action "selectValueType" value="target.value"}}>
+      {{#each valueTypes as |valueTypeChoice|}}
+        <option value={{valueTypeChoice}} selected={{eq valueType valueTypeChoice}}>{{valueTypeChoice}}</option>
+      {{/each}}
+    </select>
+  </div>
+
+  {{available-values availableValuesList=availableValuesList isAvailableValuesEnabled=isAvailableValuesEnabled}}
+
+  <div class="form-group">
+    <label>Default Value</label> {{input class="form-control" name="defaultValue" type="text" value=defaultValue}}
+  </div>
+
+  <div class="form-group">
+    <label class="form-check-label">
+      {{input class="form-check-input" name="hasValidation" type="checkbox" checked=hasValidation}}
+      Has Validation Requirement?
+    </label>
+  </div>
+
+  {{#if hasValidation}}
+    <div class="jumbotron jumbotron-fluid">
+      <div class="container">
+        <div class="form-group">
+          <label>Validation Pattern</label>
+          <select class="form-control" onchange= {{action "selectValidationPattern" value="target.value"}}>
+            {{#each validationPatterns as |validationPatternChoice|}}
+              <option
+                value={{validationPatternChoice}} selected={{eq validationPattern validationPatternChoice}}>{{validationPatternChoice}}</option>
+            {{/each}}
+          </select> {{input class="form-control" name="validationPattern" type="text" value=validationPattern placeholder="Use Dropdown for existing values"}}
+        </div>
+
+        <div class="form-group">
+          <label>Validation Minimum</label> {{input class="form-control" name="validationMin" type="text" value=validationMin placeHolder="E.G. 1 / 0.00 / 8:00"}}
+        </div>
+
+        <div class="form-group">
+          <label>Validation Maximum</label> {{input class="form-control" name="validationMax" type="text" value=validationMax placeHolder="E.G. 100 / 100.00 / 10:00"}}
+        </div>
+      </div>
+    </div>
+  {{/if}}
+
+  <div class="form-group">
+    <label>Display Order (Reverse Weight)</label> {{input class="form-control" name="displayOrder" type="number" value=displayOrder placeholder="E.G. 150"}}
+  </div>
+
+  <div class="form-group">
+    <label class="form-check-label">
+      {{input class="form-check-input" name="isDisplayable" type="checkbox" checked=isDisplayable}}
+      Should this attribute be exposed to the client apps for use?
+    </label>
+  </div>
+
+  <div class="form-group">
+    <label class="form-check-label">
+      {{input class="form-check-input" name="isSystemOwnerOnly" type="checkbox" checked=isSystemOwnerOnly}}
+      Is Company Attribute Displayable for only on the system level in Admin?
+    </label>
+  </div>
+
+  <div class="form-group">
+    <label>Unique Type</label>
+    <select class="form-control" onchange= {{action "selectUniqueType" value="target.value"}}>
+      {{#each uniqueTypes as |uniqueTypeChoice|}}
+        <option value={{uniqueTypeChoice}} selected={{eq uniqueType uniqueTypeChoice}}>{{uniqueTypeChoice}}</option>
+      {{/each}}
+    </select> {{input class="form-control" name="uniqueType" type="text" value=uniqueType placeholder="Use Dropdown for existing values"}}
+  </div>
+
+  <h4>Output (Please double check)</h4>
+
+  <div class="form-group">
+    {{text-display text=jsonDefinitionString heading="JSON Definition" }}
+  </div>
+
+  <div class="form-group">
+    {{text-display text=sqlDisplayString heading="SQL" }}
+  </div>
+</form>

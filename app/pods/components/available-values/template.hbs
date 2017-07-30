@@ -1,0 +1,42 @@
+{{#if isAvailableValuesEnabled}}
+  <div class="jumbotron jumbotron-fluid">
+    <div class="container">
+      <div class="form-inline">
+        <div class="form-group">
+          {{input class="form-control" name="availableKey" type="text" value=availableKey placeholder="ID / Key Value"}}
+        </div>
+        <div class="form-group">
+          <button type="button" class="btn btn-secondary" {{action 'copyAvailable'}}>Copy =></button>
+        </div>
+        <div class="form-group">
+          <div>
+            {{input class="form-control" name="availableValue" type="text" value=availableValue placeholder="Displayable Text"}}
+          </div>
+        </div>
+        <div class="form-group">
+          <button class="btn-primary" {{action 'addAvailableValue'}}>Add Key/Value</button>
+        </div>
+      </div>
+      <table class="table table-striped table-sm">
+        <tr>
+          <th colspan="3">Available Key/Values (Admin Dropdown List)</th>
+        </tr>
+        {{#each availableValuesList as |availableValue|}}
+          <tr>
+            <td>{{availableValue.key}}</td>
+            <td>{{availableValue.value}}</td>
+            <td>
+              <button class="btn btn-secondary" {{action 'removeAvailable' availableValue}}>
+                Remove
+              </button>
+            </td>
+          </tr>
+{{else}}
+  <tr>
+    <td colspan="3">No Available Values - That means this will default to a 'text field' type instead of drop down</td>
+  </tr>
+        {{/each}}
+      </table>
+    </div>
+  </div>
+{{/if}}

@@ -1,0 +1,85 @@
+<form {{action "noop" on="submit"}}>
+  <table class="table table-condensed margin-bottom padding-bottom">
+    <tbody>
+      <tr class="info">
+        <td>
+          <label>Starting SQL Index (Offset for adding on existing sql)</label> {{input class="form-control" name="sqlIndex" type="number" value=sqlIndex autofocus="autofocus"}}
+        </td>
+      </tr>
+      <tr class="info">
+        <td>
+          {{client-server-select bundleType=bundleType}}
+        </td>
+      </tr>
+      <tr class="info">
+        <td>
+          <label>Ticket # for each individual key
+          *</label> {{input class="form-control" name="ticket" type="text" placeholder="Ticket Number ( E.G. JIRA-1234 )" value=ticketNumber autofocus="autofocus"}}
+        </td>
+      </tr>
+      <tr class="info">
+        <td>
+          <label>Base Key *</label> {{input class="form-control" name="baseKey" type="text" value=base
+      placeholder="Base part of the key that does not reset ( E.G. settings.alerts. )"}}
+        </td>
+      </tr>
+      <tr class="info">
+        <td>
+          <label>Key</label> {{input class="form-control" name="key" type="text" value=key
+      placeholder="Enter rest of key name from base ( E.G. email )"}}
+        </td>
+      </tr>
+      <tr class="info">
+        <td>
+          <label>Text *</label>
+          {{#if fullKey}}{{fullKey}}{{/if}}
+          {{#if text}}
+            = {{text}}{{/if}} {{input class="form-control" name="text" type="text" value=text placeholder="Enter english text"}}
+        </td>
+      </tr>
+      {{#if isClientBundle}}
+        <tr class="info">
+          <td>
+            <span>
+        <label>{{input name="placeholder" type="checkbox" checked=hasPlaceholder}} Placeholder Text (UI)</label>
+        {{#if hasPlaceholder}}
+          {{#if fullPlaceholderKey}}{{fullPlaceholderKey}}{{/if}}
+          {{#if placeholderTextComputed}} = {{placeholderTextComputed}}{{/if}}
+        {{/if}}
+      </span>
+            {{#if hasPlaceholder}}
+              {{input name="suffixText" type="text" class="form-control"
+            placeholder="Placeholder Text" value=placeholderText}}
+              {{input name="suffixText" type="text" class="form-control"
+            placeholder="Change default placeholder key suffix (.text)" value=placeholderSuffix}}
+            {{/if}}
+          </td>
+        </tr>
+        <tr class="info">
+          <td>
+            <span>
+        <label>{{input name="required" type="checkbox" checked=hasRequired}} Required Validation (UI)</label>
+      </span>
+            {{#if hasRequired}}{{requiredKeyDisplay}}{{/if}}
+            {{#if hasRequired}}
+              {{input name="requiredText" type="text" class="form-control"
+            placeholder="Required Text" value=requiredErrorText}}
+              {{input name="prefix" type="text" class="form-control" placeholder="Change default key prefix (validate.)" value=requiredPrefix}}
+              {{input name="suffix" type="text" class="form-control" placeholder="Change default key suffix (.required)" value=requiredSuffix}}
+            {{/if}}
+          </td>
+        </tr>
+      {{/if}}
+      <tr>
+        <td class="text-sm-center">
+          <button name="add" type="button" class="btn btn-default btn-primary" {{action 'addClicked'}}>Add</button>
+          <button name="addReset" type="button" class="btn btn-default btn-secondary" {{action 'addResetClicked'}}>
+          Add/Reset
+        </button>
+          <button name="reset" type="button" class="btn btn-default btn-link" {{action 'resetClicked'}}>Reset
+        </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</form>

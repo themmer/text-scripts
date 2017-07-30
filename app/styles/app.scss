@@ -1,0 +1,53 @@
+$body-bg: #EEE;
+$nav-tabs-link-hover-border-color: #AAA;
+$nav-tabs-active-link-hover-bg: #CCC;
+$nav-tabs-justified-link-border-color: pink;
+$nav-link-hover-bg: #CCC;
+$nav-tabs-border-color: #AAA;
+@import "ember-cli-bootstrap-4/bootstrap";
+
+body {
+  padding: 10px;
+  margin: 40px;
+  background: -webkit-linear-gradient(-90deg, #FFF, #DDD);
+  /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(-90deg, #FFF, #DDD);
+  /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(-90deg, #FFF, #DDD);
+  /* For Firefox 3.6 to 15 */
+  background: linear-gradient(-90deg, #FFF, #DDD);
+  /* Standard syntax */
+}
+
+.margin-top {
+  margin-top: 15px;
+}
+
+.margin-bottom {
+  margin-bottom: 15px;
+}
+
+.padding-top {
+  padding-top: 15px;
+}
+
+.padding-bottom {
+  padding-bottom: 15px;
+}
+
+.table tr th {
+  @extend .text-sm-center;
+}
+
+.pre-textarea {
+  white-space: pre;
+  overflow: auto;
+  min-width: 100%;
+  min-height: 400px;
+}
+
+.import-textarea {
+  overflow: auto;
+  min-width: 100%;
+  min-height: 300px;
+}
